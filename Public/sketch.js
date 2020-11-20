@@ -1,6 +1,6 @@
-function preload(){
-  // put preload code here
-}
+let socket = io();
+
+function preload(){}
 
 function setup() {
   createCanvas(windowWidth,windowHeight)

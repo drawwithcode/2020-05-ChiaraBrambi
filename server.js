@@ -11,3 +11,10 @@ app.use(express.static("public"));
 let socket = require("socket.io");
 // una nuova var create a socket connection
 let io = socket(server);
+
+io.on("connection", newConnection);//quando cè un messaggio connection richiama la funzione
+
+function newConnection(socket) {
+console.log("new connection: " + socket.client.id);
+  
+}
