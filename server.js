@@ -19,6 +19,8 @@ console.log("new connection: " + socket.client.id);
 socket.on("mouse",mouseMessage);
 
 function mouseMessage(dataRecived){
-  console.log(dataRecived)
-}
+  console.log(socket.client.id, dataRecived);
+  //per rimandare al client
+  socket.broadcast.emit("mouseBroadcast", dataRecived);//lo manda a tutti tranne te
+  }
 }
