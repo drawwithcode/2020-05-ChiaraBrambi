@@ -16,5 +16,9 @@ io.on("connection", newConnection);//quando cè un messaggio connection richiama
 
 function newConnection(socket) {
 console.log("new connection: " + socket.client.id);
-  
+socket.on("mouse",mouseMessage);
+
+function mouseMessage(dataRecived){
+  console.log(dataRecived)
+}
 }
