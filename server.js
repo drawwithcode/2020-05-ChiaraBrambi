@@ -5,3 +5,9 @@ let express = require("express");
 let app = express();
 let port = 3000;
 let server = app.listen(port);
+app.use(express.static("public"));
+
+// carica libreria socket attraverso command promt
+let socket = require("socket.io");
+// una nuova var create a socket connection
+let io = socket(server);
