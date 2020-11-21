@@ -1,5 +1,7 @@
 let socket = io();
 let myColor = 'white';
+let pFriend;
+let sfondo;
 //quando arriva il messaggio attiva la funzione
 socket.on("connect", newConnection);
 socket.on("mouseBroadcast", otherMouse);
@@ -17,27 +19,27 @@ function setColor(assignedColor){
   //quali info vuoi mandare tra i client?
   function otherMouse(data){
     push();
+    noStroke();
     fill(data.color);
     ellipse(data.x, data.y,20);
     pop();
   }
 
+let newFriend;
   function newPlayer(newPlayerColor){
     console.log(newPlayerColor);
-    push();
-    fill('purple');
-    rectMode(CENTER);
-    rect(width/2,height/2,300, 100);
-    textAlign('center');
-    fill(newPlayerColor);
-    textSize(20);
-    text('new player joined: ' + newPlayerColor, width/2, height/2);
-    pop();
+
+    //testo
+    newFriend = createP('new friend joined: ' + newPlayerColor);
+    newFriend.style('color', newPlayerColor);
+
   }
 
 
 var cnv;
-function preload(){}
+function preload(){
+//sfondo = loadImage('public/sfondo.png');
+}
 
 function centerCanvas() {
 var q = (windowWidth - width) / 2;
@@ -45,18 +47,28 @@ var s = (windowHeight - height) / 2;
 cnv.position(q, s);
 }
 
+let pMe;
+
 function setup() {
     cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
     ellipseMode(CORNER);
     frameRate(12);
     push();
-    background("purple");
     textSize(30);
+    //image(sfondo,0,0);
     textAlign('center');
     fill(myColor);
     text('Walcame'+ myColor, width/2,height/2);
     pop();
+//testo iniziale
+    pFriend = createP('Draw with your friend and reduce the stress!');
+    pFriend.style('font-size', '25px');
+    pFriend.style('color', myColor);
+
+    pMe= createP('>> you are: ' + myColor);
+    pMe.style('font-size', '25px');
+    pMe.style('color', myColor);
 }
 
 
@@ -74,6 +86,8 @@ socket.emit("mouse", message);
 }
 
 function draw() {
+  ellipse(0,0,50);
+  rect(0,0,100,10)
 }
 
 
