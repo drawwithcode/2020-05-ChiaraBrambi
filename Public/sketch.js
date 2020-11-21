@@ -1,26 +1,33 @@
 let socket = io();
-let myColor = "red";
+let myColor = 'white';
 //quando arriva il messaggio attiva la funzione
 socket.on("connect", newConnection);
 socket.on("mouseBroadcast", otherMouse);
 socket.on("color", setColor);
-function newConnection() {
-  console.log("your id:", socket.id);
-}
-
+socket.on('newplayer', newPlayer);
 
 function setColor(assignedColor){
   myColor = assignedColor;
   }
 
+  function newConnection() {
+    console.log("your id:", socket.id);
+  }
+
+  //quali info vuoi mandare tra i client?
+  function otherMouse(data){
+    push();
+    fill(data.color);
+    ellipse(data.x, data.y,20);
+    pop();
+  }
+
+  function newPlayer(playerColor){
+    console.log(playerColor);
+  }
 
 
 var cnv;
-let w, h, num, radius;
-let blackOn, redOn, blueOn, greenOn, yellowOn, purpleOn; //colori
-let colorOn = 0; //colori
-let paper;
-
 function preload(){}
 
 function centerCanvas() {
@@ -30,37 +37,34 @@ cnv.position(q, s);
 }
 
 function setup() {
-    cnv = createCanvas(720, 720);
+    cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
     ellipseMode(CORNER);
     frameRate(12);
-
-}
-
-function draw() {
-  background('pink');
-  text('Walcame'+ assignedColor, mouseX,mouseY);
-}
-
-//quali info vuoi mandare tra i client?
-function otherMouse(data){
-  //quello che succede quando accede un altro
-  push();
-  fill(data.color);
-  ellipse(data.x, data.y,20);
-  pop();
+    push();
+    background("purple");
+    textSize(30);
+    textAlign('center');
+    fill(myColor);
+    text('Walcame'+ myColor, width/2,height/2);
+    pop();
 }
 
 
 function mouseMoved(){
+  fill(myColor);
   ellipse(mouseX,mouseY,20);
+  text('me', mouseX,mouseY);
   let message ={
     x: mouseX,
     y: mouseY,
-    color: myColor//nome della proprietà: valore
+    color: myColor,
   }
 //sand to the server
 socket.emit("mouse", message);
+}
+
+function draw() {
 }
 
 
