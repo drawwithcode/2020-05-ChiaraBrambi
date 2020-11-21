@@ -49,33 +49,39 @@ cnv.position(q, s);
 
 let pMe;
 
+
 function setup() {
     cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
     ellipseMode(CORNER);
     frameRate(12);
+
     push();
     textSize(30);
-    //image(sfondo,0,0);
+    textFont('Schoolbell');
+    rectMode(CENTER);
     textAlign('center');
+    noStroke();
     fill(myColor);
-    text('Walcame'+ myColor, width/2,height/2);
+    rect( width/2,height/2,400,150,20);
+    fill('#f8f8ff');
+    text("Go Go Baby, Let's draw ;)", width/2,height/2);
     pop();
 //testo iniziale
     pFriend = createP('Draw with your friend and reduce the stress!');
     pFriend.style('font-size', '25px');
     pFriend.style('color', myColor);
 
-    pMe= createP('>> you are: ' + myColor);
+    pMe= createP('Welcome>> you are: ' + myColor);
     pMe.style('font-size', '25px');
     pMe.style('color', myColor);
 }
 
-
-function mouseMoved(){
+//funzione che regola me
+function mouseDragged(){
+  noStroke();
   fill(myColor);
   ellipse(mouseX,mouseY,20);
-  text('me', mouseX,mouseY);
   let message ={
     x: mouseX,
     y: mouseY,
@@ -86,8 +92,6 @@ socket.emit("mouse", message);
 }
 
 function draw() {
-  ellipse(0,0,50);
-  rect(0,0,100,10)
 }
 
 
