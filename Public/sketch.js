@@ -49,11 +49,12 @@ cnv.position(q, s);
 
 let pMe;
 function setup() {
-    cnv = createCanvas(windowHeight, windowHeight);
+    cnv = createCanvas(windowWidth/1.5, windowHeight);
+
     centerCanvas();
     ellipseMode(CORNER);
     frameRate(12);
-    imageMode(CENTER):
+    imageMode(CENTER);
     image(sfondoS,width/2,height/2);
     push();
     textSize(30);
@@ -64,7 +65,8 @@ function setup() {
     fill(myColor);
     rect( width/2,height/2,400,150,20);
     fill('#f8f8ff');
-    text("Go Go Baby, Let's draw ;)", width/2,height/2);
+    text("Go Go Baby, Let's draw ;)", width/2,height/2.1);
+    text("finish to color it together <3", width/2,height/1.95);
     pop();
 //testo iniziale
     pFriend = createP('Draw with your friend and reduce the stress!');
