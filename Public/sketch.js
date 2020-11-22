@@ -1,7 +1,8 @@
 let socket = io();
 let myColor = 'white';
 let pFriend;
-let sfondo;
+let sfondoS;
+
 //quando arriva il messaggio attiva la funzione
 socket.on("connect", newConnection);
 socket.on("mouseBroadcast", otherMouse);
@@ -34,13 +35,12 @@ let newFriend;
     newFriend.style('color', newPlayerColor);
 
   }
+  function preload(){
+    sfondoS = loadImage('sfondo.png');
+  }
 
 
 var cnv;
-function preload(){
-//sfondo = loadImage('public/sfondo.png');
-}
-
 function centerCanvas() {
 var q = (windowWidth - width) / 2;
 var s = (windowHeight - height) / 2;
@@ -48,14 +48,13 @@ cnv.position(q, s);
 }
 
 let pMe;
-
-
 function setup() {
     cnv = createCanvas(windowHeight, windowHeight);
     centerCanvas();
     ellipseMode(CORNER);
     frameRate(12);
-
+    imageMode(CENTER):
+    image(sfondoS,width/2,height/2);
     push();
     textSize(30);
     textFont('Schoolbell');
@@ -75,6 +74,7 @@ function setup() {
     pMe= createP('Welcome>> you are: ' + myColor);
     pMe.style('font-size', '25px');
     pMe.style('color', myColor);
+
 }
 
 //funzione che regola me
