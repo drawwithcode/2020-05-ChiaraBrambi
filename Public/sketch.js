@@ -36,6 +36,7 @@ let newFriend;
     //testo NUOVO GIOCATORE
     newFriend = createP('new friend joined: ' + newPlayerColor);
     newFriend.style('color', newPlayerColor);
+    
   }
 
 ////inizio sketch/////////////////////////////////////////////////////////////////////////////////////////////////////////
