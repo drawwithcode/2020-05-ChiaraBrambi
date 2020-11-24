@@ -1,14 +1,18 @@
+////variabili ////////////
 let socket = io();
 let myColor = 'white';
 let pFriend;
 let sfondoS;
+let rMatita= 20;
 
+////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
 //quando arriva il messaggio attiva la funzione
 socket.on("connect", newConnection);
 socket.on("mouseBroadcast", otherMouse);
 socket.on("color", setColor);
 socket.on('newPlayer', newPlayer);
 
+////funzioni socket/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function setColor(assignedColor){
   myColor = assignedColor;
   }
@@ -22,7 +26,7 @@ function setColor(assignedColor){
     push();
     noStroke();
     fill(data.color);
-    ellipse(data.x, data.y,20);
+    ellipse(data.x, data.y,rMatita);
     pop();
   }
 
@@ -35,27 +39,37 @@ let newFriend;
     newFriend.style('color', newPlayerColor);
 
   }
-  function preload(){
-    sfondoS = loadImage('sfondo.png');
-  }
 
-
-var cnv;
-function centerCanvas() {
-var q = (windowWidth - width) / 2;
-var s = (windowHeight - height) / 2;
-cnv.position(q, s);
-}
-
+////inizio sketch/////////////////////////////////////////////////////////////////////////////////////////////////////////
 let pMe;
+var cnv;
+let slider;
+
+
+function preload(){
+    sfondoS = loadImage('sfondo.png');}
+
+    function centerCanvas() {
+      var q = (windowWidth - width) / 2;
+      var s = (windowHeight - height) / 2;
+        cnv.position(q, s);
+      }
+
+
+
 function setup() {
     cnv = createCanvas(windowWidth, windowHeight);
-
     centerCanvas();
+
+    let w = width/20;
+    let h = height/20;
     ellipseMode(CORNER);
     frameRate(12);
-    imageMode(CENTER);
-    image(sfondoS,width/2,height/5*2.8,sfondoS.width/1.2,sfondoS.height/1.2);///////////////////immagine sfondo//////////
+    ///////immagine sfondo//////////
+
+    image(sfondoS,w*3.5,h*2.5,sfondoS.width/1.2,sfondoS.height/1.2);
+    console.log(sfondoS.width/1.2);
+    console.log(sfondoS.height/1.2);
     push();
     textSize(30);
     textFont('Schoolbell');
@@ -63,22 +77,23 @@ function setup() {
 
     noStroke();
     fill(myColor);
-//RETTANGOLI
+    //RETTANGOLI
     rect( 0,0,600,80,0,0,20,20);//rect(x,y,w,h,[tl],[tr],[br],[bl])
       rect( width/2-175,0,350,80,0,0,20,20);//rect(x,y,w,h,[tl],[tr],[br],[bl])
         rect( width-350,0,350,80, 0,0,20,20);
-  textAlign('center');
-    text('the more friends you invite, the more colors you will have to complete the sketch', width-320,100,300);
+
+    //TESTO
+    textAlign('center');
+    text('the more friends you invite, the more colors you will have to complete the sketch', width-320,h*2,300);
+    text("Options", width-250,h);
     fill('#f8f8ff');
 
-    text("Go Go Baby, Let's draw ;)", width/2,height/19);
-    text('Draw with friend and reduce the stress!', width/7,height/19);
-
-
-    //text("Let's finish color it together <3", width/2,height/20);
-    //text('Draw with your friend and reduce the stress!', width/2,height/1.95);
+    text("Go Go Baby, Let's draw ;)", w*10,h);
+    text('Draw with friend and reduce the stress!', w*2,h);
+    text("Options", width-250,height/20);
     pop();
-//testo iniziale
+
+    //AGGIUNTA DI UN AMICO
     pFriend = createP('Draw with your friend and reduce the stress!');
     pFriend.style('font-size', '25px');
     pFriend.style('color', myColor);
@@ -87,25 +102,32 @@ function setup() {
     pMe.style('font-size', '25px');
     pMe.style('color', myColor);
 
+    //SLIDER
+    slider = createSlider(0.1,50,10);
+    slider.position(width-300,height/3);
+    slider.style('width', '200px');
 }
 
 //funzione che regola me
 function mouseDragged(){
-  noStroke();
-  fill(myColor);
-  ellipse(mouseX,mouseY,20);
-  let message ={
-    x: mouseX,
-    y: mouseY,
-    color: myColor,
-  }
-//sand to the server
-socket.emit("mouse", message);
+  if (mouseX > width/20*3.5 && mouseX < width/20*15.5&& mouseY > height/20*2.5 && mouseY < height/20*19.5) {
+        noStroke();
+        fill(myColor);
+        ellipse(mouseX,mouseY,rMatita);
+        let message ={
+          x: mouseX,
+          y: mouseY,
+          color: myColor,
+        }
+      //sand to the server
+      socket.emit("mouse", message);
+      }
+
 }
 
 function draw() {
+rMatita = slider.value();
 }
-
 
 function windowResized() {
   centerCanvas();
