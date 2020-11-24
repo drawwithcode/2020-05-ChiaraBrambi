@@ -49,24 +49,34 @@ cnv.position(q, s);
 
 let pMe;
 function setup() {
-    cnv = createCanvas(windowWidth/1.5, windowHeight);
+    cnv = createCanvas(windowWidth, windowHeight);
 
     centerCanvas();
     ellipseMode(CORNER);
     frameRate(12);
     imageMode(CENTER);
-    image(sfondoS,width/2,height/2);
+    image(sfondoS,width/2,height/5*2.8,sfondoS.width/1.2,sfondoS.height/1.2);///////////////////immagine sfondo//////////
     push();
     textSize(30);
     textFont('Schoolbell');
-    rectMode(CENTER);
-    textAlign('center');
+    rectMode(CORNER);
+
     noStroke();
     fill(myColor);
-    rect( width/2,height/2,400,150,20);
+//RETTANGOLI
+    rect( 0,0,600,80,0,0,20,20);//rect(x,y,w,h,[tl],[tr],[br],[bl])
+      rect( width/2-175,0,350,80,0,0,20,20);//rect(x,y,w,h,[tl],[tr],[br],[bl])
+        rect( width-350,0,350,80, 0,0,20,20);
+  textAlign('center');
+    text('the more friends you invite, the more colors you will have to complete the sketch', width-320,100,300);
     fill('#f8f8ff');
-    text("Go Go Baby, Let's draw ;)", width/2,height/2.1);
-    text("finish to color it together <3", width/2,height/1.95);
+
+    text("Go Go Baby, Let's draw ;)", width/2,height/19);
+    text('Draw with friend and reduce the stress!', width/7,height/19);
+
+
+    //text("Let's finish color it together <3", width/2,height/20);
+    //text('Draw with your friend and reduce the stress!', width/2,height/1.95);
     pop();
 //testo iniziale
     pFriend = createP('Draw with your friend and reduce the stress!');
