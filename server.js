@@ -31,8 +31,13 @@ function mouseMessage(dataRecived){
 
 socket.on("spessore", spessore);
 function spessore(dataRecived){
-  socket.broadcast.emit('dimensioneMatita', dataRecived);//lo manda a tutti i client tranne a me
+  socket.broadcast.emit('dimensioneMatita', dataRecived);
 }
+
+// socket.on("cambioColore", cambioColore);
+// function cambioColore(dataRecived){
+// socket.broadcast.emit('cambio', dataRecived);//lo manda a tutti i client tranne a me
+//  }
 
 }
 
