@@ -86,7 +86,7 @@ function setup() {
 
     //TESTO
     textAlign('center');
-    text('the more friends you invite, the more colors you will have to complete the sketch', width-320,h*2.5,300);
+    text('The more friends you invite, the more colors you will have to complete the sketch', width-320,h*2.5,300);
     text("PENCIL'S THICKINESS", w*18,h*7);
     fill('#f8f8ff');
 
