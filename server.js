@@ -27,7 +27,13 @@ socket.on("mouse",mouseMessage);
 function mouseMessage(dataRecived){
   console.log(socket.client.id, dataRecived);//lo visualizzo nel commondo prompt
   socket.broadcast.emit("mouseBroadcast", dataRecived);//lo manda a tutti i client tranne a me
-  }
+}
+
+socket.on("spessore", spessore);
+function spessore(dataRecived){
+  socket.broadcast.emit('dimensioneMatita', dataRecived);//lo manda a tutti i client tranne a me
+}
+
 }
 
 function getRandomColor(){

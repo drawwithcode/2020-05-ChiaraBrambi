@@ -3,7 +3,8 @@ let socket = io();
 let myColor = 'white';
 let pFriend;
 let sfondoS;
-let rMatita= 20;
+let mioSpessoreMatita= 20;
+let newPlayerSpessore;
 
 ////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
 //quando arriva il messaggio attiva la funzione
@@ -11,11 +12,17 @@ socket.on("connect", newConnection);
 socket.on("mouseBroadcast", otherMouse);
 socket.on("color", setColor);
 socket.on('newPlayer', newPlayer);
+socket.on('dimensioneMatita',othrSpessoreMatita);
 
 ////funzioni socket/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function setColor(assignedColor){
   myColor = assignedColor;
   }
+
+  function otherSpessoreMatita(r){
+  newPlayerSpessore = r;
+  }
+
 
   function newConnection() {
     console.log("your id:", socket.id);
@@ -26,7 +33,7 @@ function setColor(assignedColor){
     push();
     noStroke();
     fill(data.color);
-    ellipse(data.x, data.y,rMatita);
+    ellipse(data.x, data.y,newPlayerSpessore);//data.r
     pop();
   }
 
@@ -36,7 +43,7 @@ let newFriend;
     //testo NUOVO GIOCATORE
     newFriend = createP('new friend joined: ' + newPlayerColor);
     newFriend.style('color', newPlayerColor);
-    
+
   }
 
 ////inizio sketch/////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,11 +88,10 @@ function setup() {
     //TESTO
     textAlign('center');
     text('the more friends you invite, the more colors you will have to complete the sketch', width-320,h*2.5,300);
-    text("ciao", w*7,h);
     text("PENCIL'S THICKINESS", w*18,h*7);
     fill('#f8f8ff');
 
-    text("Go Go Baby, Let's draw ;)", w*10,h);
+    text("Go Go Baby, Let's Color ;)", w*10,h);
     text('Draw with friend and reduce the stress!', w*3,h);
     text("Options", w*17.5,h);
     pop();
@@ -110,7 +116,7 @@ function mouseDragged(){
   if (mouseX > width/20*3.5 && mouseX < width/20*15.5&& mouseY > height/20*2.5 && mouseY < height/20*19.5) {
         noStroke();
         fill(myColor);
-        ellipse(mouseX,mouseY,rMatita);
+        ellipse(mouseX,mouseY,mioSpessoreMatita);
         let message ={
           x: mouseX,
           y: mouseY,
@@ -123,7 +129,10 @@ function mouseDragged(){
 }
 
 function draw() {
-rMatita = slider.value();
+
+mioSpessoreMatita = slider.value();
+let sliderValue = mioSpessoreMatita;
+socket.emit("spessore",sliderValue);
 }
 
 function windowResized() {
