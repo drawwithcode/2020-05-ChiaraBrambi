@@ -5,7 +5,7 @@ let pFriend;
 let sfondoS;
 let mioSpessoreMatita= 20;
 let newPlayerSpessore;
-//let myColorPicker;
+let myColorPicker;
 
 
 ////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +31,7 @@ function setColor(assignedColor){
   // function newMyColor(newCol){
   //   myColor=newCol;
   // }
+
   function newConnection() {
     console.log("your id:", socket.id);
   }
@@ -106,9 +107,9 @@ function setup() {
     slider.position(w*17,h*7.5);
     slider.style('width', '200px');
 
-    // //color myColorPicker
-    // myColorPicker = createColorPicker(myColor);
-    // myColorPicker.position(w*18,h*12.5);
+    //color myColorPicker
+    //myColorPicker = createColorPicker(myColor);
+  //  myColorPicker.position(w*18,h*12.5);
 }
 
 //funzione che regola me
@@ -138,8 +139,6 @@ socket.emit("spessore",sliderValue);
 // myColor = myColorPicker.color();
 // let newColor = myColor;
 // socket.emit("cambioColore",newColor);
-
-
 
 
 push();
