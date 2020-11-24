@@ -33,11 +33,9 @@ function setColor(assignedColor){
 let newFriend;
   function newPlayer(newPlayerColor){
     console.log(newPlayerColor);
-
-    //testo
+    //testo NUOVO GIOCATORE
     newFriend = createP('new friend joined: ' + newPlayerColor);
     newFriend.style('color', newPlayerColor);
-
   }
 
 ////inizio sketch/////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,10 +64,7 @@ function setup() {
     ellipseMode(CORNER);
     frameRate(12);
     ///////immagine sfondo//////////
-
     image(sfondoS,w*3.5,h*2.5,sfondoS.width/1.2,sfondoS.height/1.2);
-    console.log(sfondoS.width/1.2);
-    console.log(sfondoS.height/1.2);
     push();
     textSize(30);
     textFont('Schoolbell');
@@ -84,13 +79,14 @@ function setup() {
 
     //TESTO
     textAlign('center');
-    text('the more friends you invite, the more colors you will have to complete the sketch', width-320,h*2,300);
-    text("Options", width-250,h);
+    text('the more friends you invite, the more colors you will have to complete the sketch', width-320,h*2.5,300);
+    text("ciao", w*7,h);
+    text("PENCIL'S THICKINESS", w*18,h*7);
     fill('#f8f8ff');
 
     text("Go Go Baby, Let's draw ;)", w*10,h);
-    text('Draw with friend and reduce the stress!', w*2,h);
-    text("Options", width-250,height/20);
+    text('Draw with friend and reduce the stress!', w*3,h);
+    text("Options", w*17.5,h);
     pop();
 
     //AGGIUNTA DI UN AMICO
@@ -104,7 +100,7 @@ function setup() {
 
     //SLIDER
     slider = createSlider(0.1,50,10);
-    slider.position(width-300,height/3);
+    slider.position(w*17,h*7.5);
     slider.style('width', '200px');
 }
 
