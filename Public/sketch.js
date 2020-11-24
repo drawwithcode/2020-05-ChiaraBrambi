@@ -83,7 +83,7 @@ function setup() {
     push();
     textSize(30);
     textFont('Schoolbell');
-
+    fill(myColor);
     //TESTO
     textAlign('center');
     text('-The more friends you invite, the more colors you will have to complete the sketch', width-320,h*2.5,w*3);
@@ -146,7 +146,6 @@ push();
 noStroke();
 textSize(30);
 textFont('Schoolbell');
-fill(myColor);
 textAlign('center');
 rectMode(CORNER);
 noStroke();
