@@ -12,14 +12,14 @@ socket.on("connect", newConnection);
 socket.on("mouseBroadcast", otherMouse);
 socket.on("color", setColor);
 socket.on('newPlayer', newPlayer);
-socket.on('dimensioneMatita',othrSpessoreMatita);
+socket.on('dimensioneMatita',otherSpessore);
 
 ////funzioni socket/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function setColor(assignedColor){
   myColor = assignedColor;
   }
 
-  function otherSpessoreMatita(r){
+  function otherSpessore(r){
   newPlayerSpessore = r;
   }
 
@@ -61,14 +61,13 @@ function preload(){
         cnv.position(q, s);
       }
 
-
+    let w, h;
 
 function setup() {
     cnv = createCanvas(windowWidth, windowHeight);
     centerCanvas();
-
-    let w = width/20;
-    let h = height/20;
+    w = width/20;
+    h = height/20;
     ellipseMode(CORNER);
     frameRate(12);
     ///////immagine sfondo//////////
@@ -82,7 +81,7 @@ function setup() {
     fill(myColor);
     //RETTANGOLI
     rect( 0,0,600,80,0,0,20,20);//rect(x,y,w,h,[tl],[tr],[br],[bl])
-      rect( width/2-175,0,350,80,0,0,20,20);//rect(x,y,w,h,[tl],[tr],[br],[bl])
+
         rect( width-350,0,350,80, 0,0,20,20);
 
     //TESTO
@@ -91,13 +90,12 @@ function setup() {
     text("PENCIL'S THICKINESS", w*18,h*7);
     fill('#f8f8ff');
 
-    text("Go Go Baby, Let's Color ;)", w*10,h);
     text('Draw with friend and reduce the stress!', w*3,h);
     text("Options", w*17.5,h);
     pop();
 
     //AGGIUNTA DI UN AMICO
-    pFriend = createP('Draw with your friend and reduce the stress!');
+    pFriend = createP('Uuu easter Egg');
     pFriend.style('font-size', '25px');
     pFriend.style('color', myColor);
 
@@ -124,15 +122,33 @@ function mouseDragged(){
         }
       //sand to the server
       socket.emit("mouse", message);
+
       }
 
 }
 
 function draw() {
-
 mioSpessoreMatita = slider.value();
 let sliderValue = mioSpessoreMatita;
 socket.emit("spessore",sliderValue);
+
+push();
+noStroke();
+textSize(30);
+textFont('Schoolbell');
+fill(myColor);
+textAlign('center');
+if(mouseIsPressed){
+  rect( w*8,0,w*4,80,0,0,20,20);
+  fill('#f8f8ff');
+  text("You're coloring very well!",  w*10,h);
+}else{
+  rect( w*8,0,w*4,80,0,0,20,20);
+  fill('#f8f8ff');
+  text("Come on let's color!",  w*10,h);
+}
+
+pop();
 }
 
 function windowResized() {
