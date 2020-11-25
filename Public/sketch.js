@@ -61,7 +61,7 @@ let slider;
 
 
 function preload(){
-    //sfondoS = loadImage('sfondo.png');}
+    sfondoS = loadImage('sfondo.png');}
 
     function centerCanvas() {
       var q = (windowWidth - width) / 2;
@@ -79,7 +79,7 @@ function setup() {
     ellipseMode(CORNER);
     frameRate(12);
     ///////immagine sfondo//////////
-    //image(sfondoS,w*3.5,h*2.5,sfondoS.width/1.2,sfondoS.height/1.2);
+    image(sfondoS,w*3.5,h*2.5,sfondoS.width/1.2,sfondoS.height/1.2);
 
     push();
     textSize(30);
