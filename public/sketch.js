@@ -102,7 +102,7 @@ function setup() {
 
 //funzione che regola me
 function mouseDragged(){
-  if (mouseX > width/20*3.7 && mouseX < width/20*15.7 && mouseY > height/20*2.5 && mouseY < height/20*19.5) {
+  if (mouseX > width/20*4 && mouseX < width/20*15.3 && mouseY > height/20*4 && mouseY < height/20*19.5) {
         noStroke();
         fill(myColor);
         ellipse(mouseX,mouseY,mioSpessoreMatita);
@@ -140,7 +140,7 @@ textAlign('center');
 rectMode(CORNER);
 fill(myColor);
 
-text('-The more friends you invite, the more colors you will have to complete the sketch', w*16,h*3,w*3.5);
+text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*16,h*3,w*3.5);
 text("PENCIL'S THICKINESS", w*17.8,h*8.5);
 text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
 text("-->",w*17.3,h*14.3);
