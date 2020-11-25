@@ -88,9 +88,9 @@ function setup() {
     //TESTO
     textAlign('center');
     text('-The more friends you invite, the more colors you will have to complete the sketch', w*16,h*3,w*3.5);
-    text("PENCIL'S THICKINESS", w*17.5,h*7.5);
-    text("-If you do't have freinds, you can choose your color", w*16,h*9,w*3.5);
-    text("-->",w*17.5,h*13);
+    text("PENCIL'S THICKINESS", w*17.8,h*8.5);
+    text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
+    text("-->",w*17.3,h*14.3);
     pop();
 
     //AGGIUNTA DI UN AMICO
@@ -104,7 +104,7 @@ function setup() {
 
     //SLIDER
     slider = createSlider(0.1,50,10);
-    slider.position(w*17,h*7.5);
+    slider.position(w*16.5,h*9.2);
     slider.style('width', '200px');
 
     //color myColorPicker
@@ -143,26 +143,26 @@ socket.emit("spessore",sliderValue);
 
 push();
 noStroke();
-textSize(20);
+textSize(25);
 textFont('Schoolbell');
 textAlign('center');
 rectMode(CORNER);
 noStroke();
 fill(myColor);
 //RETTANGOLI
-rect( 0,0,600,80,0,0,20,20);
+rect( 0,0,w*6.3,80,0,0,20,20);
     rect( width-350,0,350,80, 0,0,20,20);
 if(mouseIsPressed){
-  rect( w*8,0,w*3,80,0,0,20,20);
+  rect( w*8,0,w*4,80,0,0,20,20);
   fill('#f8f8ff');
-  text("You're coloring very well!",  w*10,h);
+  text("You're coloring very well!",  w*10,h*1.2);
 }else{
-  rect( w*8,0,w*3,80,0,0,20,20);
+  rect( w*8,0,w*4,80,0,0,20,20);
   fill('#f8f8ff');
-  text("Come on let's color!",  w*10,h);
+  text("Come on let's color!",  w*10,h*1.2);
 }
-text('Draw with friend and reduce the stress!', w*3,h);
-text("Options", w*17.5,h);
+text('Draw with friend and reduce the stress!', w*3,h*1.2);
+text("Options...", w*16.8,h*1.2);
 pop();
 
 }
