@@ -86,7 +86,7 @@ function setup() {
     pFriend.style('font-size', '25px');
     pFriend.style('color', myColor);
 
-    pMe= createP('Welcome>> you are: ' + myColor);
+    pMe= createP('👋 Welcome>> you are: ' + myColor);
     pMe.style('font-size', '25px');
     pMe.style('color', myColor);
 
@@ -150,11 +150,11 @@ text("-->",w*17.3,h*14.3);
 rect( 0,0,w*6.3,80,0,0,20,20);
     rect( width-350,0,350,80, 0,0,20,20);
 if(mouseIsPressed){
-  rect( w*8,0,w*4,80,0,0,20,20);
+  rect( w*7.8,0,w*4.3,80,0,0,20,20);
   fill('#f8f8ff');
-  text("You're coloring very well!",  w*10,h*1.2);
+  text("You're coloring very well ✌",  w*10,h*1.2);
 }else{
-  rect( w*8,0,w*4,80,0,0,20,20);
+  rect( w*7.8,0,w*4.3,80,0,0,20,20);
   fill('#f8f8ff');
   text("Come on let's color!",  w*10,h*1.2);
 }
