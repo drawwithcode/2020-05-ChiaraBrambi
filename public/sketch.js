@@ -81,18 +81,6 @@ function setup() {
     ///////immagine sfondo//////////
     image(sfondoS,w*4,h*4,sfondoS.width/1.6,sfondoS.height/1.6);
 
-    push();
-    textSize(25);
-    textFont('Schoolbell');
-    fill(myColor);
-    //TESTO
-    textAlign('center');
-    text('-The more friends you invite, the more colors you will have to complete the sketch', w*16,h*3,w*3.5);
-    text("PENCIL'S THICKINESS", w*17.8,h*8.5);
-    text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
-    text("-->",w*17.3,h*14.3);
-    pop();
-
     //AGGIUNTA DI UN AMICO
     pFriend = createP('Uuu easter Egg');
     pFriend.style('font-size', '25px');
@@ -143,12 +131,21 @@ socket.emit("spessore",sliderValue);
 
 push();
 noStroke();
+fill( '#f8f8ff');
+rect( width-350,0,350,h*14, 0,0,20,20);
+noStroke();
 textSize(25);
 textFont('Schoolbell');
 textAlign('center');
 rectMode(CORNER);
-noStroke();
 fill(myColor);
+
+text('-The more friends you invite, the more colors you will have to complete the sketch', w*16,h*3,w*3.5);
+text("PENCIL'S THICKINESS", w*17.8,h*8.5);
+text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
+text("-->",w*17.3,h*14.3);
+
+
 //RETTANGOLI
 rect( 0,0,w*6.3,80,0,0,20,20);
     rect( width-350,0,350,80, 0,0,20,20);
