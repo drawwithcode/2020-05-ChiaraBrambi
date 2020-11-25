@@ -144,7 +144,7 @@ text('-The more friends you invite, the more colors you will have to complete th
 text("PENCIL'S THICKINESS", w*17.8,h*8.5);
 text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
 text("-->",w*17.3,h*14.3);
-text("-If u want to save your Masterpice press s ", w*16,h*11,w*3.5);
+text("-If you want to save your Masterpice press s ", w*16,h*16,w*3.5);
 
 //RETTANGOLI
 rect( 0,0,w*6.3,80,0,0,20,20);
