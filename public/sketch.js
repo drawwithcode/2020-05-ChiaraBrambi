@@ -96,8 +96,8 @@ function setup() {
     slider.style('width', '200px');
 
     //color myColorPicker
-    //myColorPicker = createColorPicker(myColor);
-  //  myColorPicker.position(w*18,h*12.5);
+    myColorPicker = createColorPicker(myColor);
+    myColorPicker.position(w*17.5,h*13);
 }
 
 //funzione che regola me
@@ -105,6 +105,7 @@ function mouseDragged(){
   if (mouseX > width/20*4 && mouseX < width/20*15.3 && mouseY > height/20*4 && mouseY < height/20*19.5) {
         noStroke();
         fill(myColor);
+        fill(newColor);
         ellipse(mouseX,mouseY,mioSpessoreMatita);
         let message ={
           x: mouseX,
@@ -128,6 +129,7 @@ socket.emit("spessore",sliderValue);
 // let newColor = myColor;
 // socket.emit("cambioColore",newColor);
 
+newColor = myColorPicker.color();
 
 push();
 noStroke();
@@ -139,7 +141,7 @@ textFont('Schoolbell');
 textAlign('center');
 rectMode(CORNER);
 fill(myColor);
-
+fill(newColor);
 text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*16,h*4,w*3.5);
 text("PENCIL'S THICKINESS", w*17.8,h*8.5);
 text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
