@@ -79,17 +79,17 @@ function setup() {
     ellipseMode(CORNER);
     frameRate(12);
     ///////immagine sfondo//////////
-    image(sfondoS,w*3.5,h*2.5,sfondoS.width/1.2,sfondoS.height/1.2);
+    image(sfondoS,w*4,h*4,sfondoS.width/1.6,sfondoS.height/1.6);
 
     push();
-    textSize(30);
+    textSize(25);
     textFont('Schoolbell');
     fill(myColor);
     //TESTO
     textAlign('center');
-    text('-The more friends you invite, the more colors you will have to complete the sketch', width-320,h*2.5,w*3);
-    text("PENCIL'S THICKINESS", w*18,h*7);
-    text("-If you do't have freinds, you can choose your color", width-320,h*9,w*3);
+    text('-The more friends you invite, the more colors you will have to complete the sketch', w*16,h*3,w*3.5);
+    text("PENCIL'S THICKINESS", w*17.5,h*7.5);
+    text("-If you do't have freinds, you can choose your color", w*16,h*9,w*3.5);
     text("-->",w*17.5,h*13);
     pop();
 
@@ -114,7 +114,7 @@ function setup() {
 
 //funzione che regola me
 function mouseDragged(){
-  if (mouseX > width/20*3.5 && mouseX < width/20*15.5 && mouseY > height/20*2.5 && mouseY < height/20*19.5) {
+  if (mouseX > width/20*3.7 && mouseX < width/20*15.7 && mouseY > height/20*2.5 && mouseY < height/20*19.5) {
         noStroke();
         fill(myColor);
         ellipse(mouseX,mouseY,mioSpessoreMatita);
@@ -143,7 +143,7 @@ socket.emit("spessore",sliderValue);
 
 push();
 noStroke();
-textSize(30);
+textSize(20);
 textFont('Schoolbell');
 textAlign('center');
 rectMode(CORNER);
@@ -153,11 +153,11 @@ fill(myColor);
 rect( 0,0,600,80,0,0,20,20);
     rect( width-350,0,350,80, 0,0,20,20);
 if(mouseIsPressed){
-  rect( w*8,0,w*4,80,0,0,20,20);
+  rect( w*8,0,w*3,80,0,0,20,20);
   fill('#f8f8ff');
   text("You're coloring very well!",  w*10,h);
 }else{
-  rect( w*8,0,w*4,80,0,0,20,20);
+  rect( w*8,0,w*3,80,0,0,20,20);
   fill('#f8f8ff');
   text("Come on let's color!",  w*10,h);
 }
