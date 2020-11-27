@@ -86,6 +86,7 @@ function setup() {
     colorP = createColorPicker();
     colorP.position(w*17.5,h*13);
     colorP.style("width", "70px");
+    colorP.value(myColor);
 }
 
 //funzione che regola me
@@ -108,7 +109,7 @@ function mouseDragged(){
 
 function draw() {
 mioSpessoreMatita = slider.value();
-colorP.value(myColor);
+myColor = colorP.value();
 
 push();
 noStroke();
