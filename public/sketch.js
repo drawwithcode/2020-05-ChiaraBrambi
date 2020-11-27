@@ -93,7 +93,7 @@ function setup() {
 
 //funzione che regola me
 function mouseDragged(){
-  if (mouseX > width/20*5 && mouseX < width/20*15.3 && mouseY > height/20*4 && mouseY < height/20*19.5) {
+  if (mouseX > width/20*4 && mouseX < width/20*14.5 && mouseY > height/20*3 && mouseY < height/20*19) {
         noStroke();
         fill(myColor);
               ellipse(mouseX,mouseY,mioSpessoreMatita);
