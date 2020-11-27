@@ -1,3 +1,4 @@
+//https://assignement05chiara.herokuapp.com/
 ////variabili ////////////
 let socket = io();
 let myColor = 'white';
@@ -6,11 +7,10 @@ let sfondoS;
 let mioSpessoreMatita= 20;
 
 let colorP;
-let colorPicker2;
-
 let pMe;
 var cnv;
 let slider;
+
 ////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
 
 //quando arriva il messaggio attiva la funzione
@@ -47,7 +47,9 @@ let newFriend;
 
 ////inizio sketch/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function preload(){
-    sfondoS = loadImage('sfondo.png');}
+    sfondoS = loadImage('disegnini.png');
+    //back = loadImage('background.png');
+  }
 
   function centerCanvas() {
       var q = (windowWidth - width) / 2;
@@ -55,19 +57,18 @@ function preload(){
         cnv.position(q, s);
       }
 
-    let w, h;
-
+let w, h;
 function setup() {
     cnv = createCanvas(windowWidth, windowHeight);
     centerCanvas();
     w = width/20;
     h = height/20;
     ellipseMode(CORNER);
+
     frameRate(12);
-
-    ///////immagine sfondo//////////
-    image(sfondoS,w*4,h*4,sfondoS.width/1.6,sfondoS.height/1.6);
-
+    fill('#f8f8ff');
+    noStroke();
+    rect( w*4.5,h*3.5,w*10,h*19,20);
     //AGGIUNTA DI UN AMICO
     pFriend = createP('Uuu easter Egg');
     pFriend.style('font-size', '25px');
@@ -91,7 +92,7 @@ function setup() {
 
 //funzione che regola me
 function mouseDragged(){
-  if (mouseX > width/20*4 && mouseX < width/20*15.3 && mouseY > height/20*4 && mouseY < height/20*19.5) {
+  if (mouseX > width/20*5 && mouseX < width/20*15.3 && mouseY > height/20*4 && mouseY < height/20*19.5) {
         noStroke();
         fill(myColor);
               ellipse(mouseX,mouseY,mioSpessoreMatita);
@@ -100,16 +101,18 @@ function mouseDragged(){
           y: mouseY,
           color: myColor,
           size: mioSpessoreMatita,
-
         }
       //sand to the server
       socket.emit("mouse", message);
       }
 }
-
+///////////inizio draw ////////////////////////////////////////////////
 function draw() {
 mioSpessoreMatita = slider.value();
 myColor = colorP.value();
+///////immagine sfondo//////////
+//image(back,w*10,h*10);
+image(sfondoS,w*5,h*4,sfondoS.width/3,sfondoS.height/3);
 
 push();
 noStroke();
@@ -138,9 +141,9 @@ if(mouseIsPressed){
 }else{
   rect( w*7.8,0,w*4.3,80,0,0,20,20);
   fill('#f8f8ff');
-  text("Come on let's color!",  w*10,h*1.2);
+  text("Color your Moods!",  w*10,h*1.2);
 }
-text('Draw with friend and reduce the stress!', w*3,h*1.2);
+text('Draw with friends and reduce the stress!', w*3,h*1.2);
 text("Options...", w*16.8,h*1.2);
 pop();
 
