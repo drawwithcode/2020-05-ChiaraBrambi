@@ -17,7 +17,6 @@ io.on("connection", newConnection);
 function newConnection(socket){//funzione che si attiva ogni volta che c'è una nuova connessione
 console.log("new connection: " + socket.client.id);
 
-
 let clientColor= getRandomColor();
 socket.emit('color',clientColor);
 
@@ -29,9 +28,9 @@ function mouseMessage(dataRecived){
   socket.broadcast.emit("mouseBroadcast", dataRecived);//lo manda a tutti i client tranne a me
 }
 
-socket.on("spessore", spessore);
-function spessore(dataRecived){
-  socket.broadcast.emit('dimensioneMatita', dataRecived);
+// socket.on("spessore", spessore);
+// function spessore(dataRecived){
+//   socket.broadcast.emit('dimensioneMatita', dataRecived);
 }
 
 // socket.on("cambioColore", cambioColore);
@@ -39,7 +38,7 @@ function spessore(dataRecived){
 // socket.broadcast.emit('cambio', dataRecived);//lo manda a tutti i client tranne a me
 //  }
 
-}
+
 
 function getRandomColor(){
   var letters = "0123456789ABCDEF";

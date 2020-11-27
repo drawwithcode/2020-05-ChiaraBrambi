@@ -4,44 +4,36 @@ let myColor = 'white';
 let pFriend;
 let sfondoS;
 let mioSpessoreMatita= 20;
-let newPlayerSpessore;
-let myColorPicker;
 
+let colorP;
+let colorPicker2;
 
+let pMe;
+var cnv;
+let slider;
 ////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
+
 //quando arriva il messaggio attiva la funzione
 socket.on("connect", newConnection);
 socket.on("mouseBroadcast", otherMouse);
 socket.on("color", setColor);
 socket.on('newPlayer', newPlayer);
-socket.on('dimensioneMatita',otherSpessore);
-//socket.on('cambio',newMyColor);
 
-////funzioni socket/////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+////Funzioni socket/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function setColor(assignedColor){
   myColor = assignedColor;
   }
-
-  function otherSpessore(r){
-  newPlayerSpessore = r;
-  }
-
-  // function newMyColor(newCol){
-  //   myColor=newCol;
-  // }
 
   function newConnection() {
     console.log("your id:", socket.id);
   }
 
-  //quali info vuoi mandare tra i client?
+//quali info vuoi mandare tra i client?
   function otherMouse(data){
     push();
     noStroke();
     fill(data.color);
-    ellipse(data.x, data.y,newPlayerSpessore);
+    ellipse(data.x, data.y,data.size);
     pop();
   }
 
@@ -51,19 +43,13 @@ let newFriend;
     //testo NUOVO GIOCATORE
     newFriend = createP('new friend joined: ' + newPlayerColor);
     newFriend.style('color', newPlayerColor);
-
   }
 
 ////inizio sketch/////////////////////////////////////////////////////////////////////////////////////////////////////////
-let pMe;
-var cnv;
-let slider;
-
-
 function preload(){
     sfondoS = loadImage('sfondo.png');}
 
-    function centerCanvas() {
+  function centerCanvas() {
       var q = (windowWidth - width) / 2;
       var s = (windowHeight - height) / 2;
         cnv.position(q, s);
@@ -78,6 +64,7 @@ function setup() {
     h = height/20;
     ellipseMode(CORNER);
     frameRate(12);
+
     ///////immagine sfondo//////////
     image(sfondoS,w*4,h*4,sfondoS.width/1.6,sfondoS.height/1.6);
 
@@ -96,8 +83,9 @@ function setup() {
     slider.style('width', '200px');
 
     //color myColorPicker
-    myColorPicker = createColorPicker(myColor);
-    myColorPicker.position(w*17.5,h*13);
+    colorP = createColorPicker();
+    colorP.position(w*17.5,h*13);
+    colorP.style("width", "70px");
 }
 
 //funzione che regola me
@@ -105,31 +93,22 @@ function mouseDragged(){
   if (mouseX > width/20*4 && mouseX < width/20*15.3 && mouseY > height/20*4 && mouseY < height/20*19.5) {
         noStroke();
         fill(myColor);
-        fill(newColor);
-        ellipse(mouseX,mouseY,mioSpessoreMatita);
+              ellipse(mouseX,mouseY,mioSpessoreMatita);
         let message ={
           x: mouseX,
           y: mouseY,
           color: myColor,
+          size: mioSpessoreMatita,
+
         }
       //sand to the server
       socket.emit("mouse", message);
-
       }
-
 }
-
 
 function draw() {
 mioSpessoreMatita = slider.value();
-let sliderValue = mioSpessoreMatita;
-socket.emit("spessore",sliderValue);
-
-// myColor = myColorPicker.color();
-// let newColor = myColor;
-// socket.emit("cambioColore",newColor);
-
-newColor = myColorPicker.color();
+colorP.value(myColor);
 
 push();
 noStroke();
@@ -141,7 +120,6 @@ textFont('Schoolbell');
 textAlign('center');
 rectMode(CORNER);
 fill(myColor);
-fill(newColor);
 text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*16,h*4,w*3.5);
 text("PENCIL'S THICKINESS", w*17.8,h*8.5);
 text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
