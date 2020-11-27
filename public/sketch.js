@@ -10,7 +10,7 @@ let colorP;
 let pMe;
 var cnv;
 let slider;
-
+let firstColor;
 ////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
 
 //quando arriva il messaggio attiva la funzione
@@ -85,9 +85,10 @@ function setup() {
 
     //color myColorPicker
     colorP = createColorPicker();
-    colorP.position(w*17.5,h*13);
-    colorP.style("width", "70px");
+    colorP.position(w*17.5,h*17);
+    colorP.style("width", "100px");
     colorP.value(myColor);
+    firstColor=myColor;
 }
 
 //funzione che regola me
@@ -106,10 +107,18 @@ function mouseDragged(){
       socket.emit("mouse", message);
       }
 }
+
+let erase = 0;
 ///////////inizio draw ////////////////////////////////////////////////
 function draw() {
 mioSpessoreMatita = slider.value();
-myColor = colorP.value();
+if (erase== 1){
+  colorP.value('#f8f8ff');
+  erase = 0;
+}else{
+  myColor = colorP.value();
+}
+
 ///////immagine sfondo//////////
 //image(back,w*10,h*10);
 image(sfondoS,w*5,h*4,sfondoS.width/3,sfondoS.height/3);
@@ -123,12 +132,15 @@ textSize(23);
 textFont('Schoolbell');
 textAlign('center');
 rectMode(CORNER);
-fill(myColor);
-text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*16,h*4,w*3.5);
-text("PENCIL'S THICKINESS", w*17.8,h*8.5);
-text("-If you do't have freinds, you can choose your color", w*16,h*11,w*3.5);
-text("-->",w*17,h*13.5);
-text("- Press ' S ', If you want   to save your Masterpice!  ", w*16,h*14.5,w*3.5);
+fill(firstColor);
+text("- Press ' S ', to SAVE      your Masterpice!  ", w*16,h*4,w*3.5);
+text("- Press ' E ', to ERASE     your Emotions.  ", w*16,h*6,w*3.5);
+text("- Pencil's SIZE", w*17,h*8.5);
+text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*16,h*11,w*3.5);
+text("-If you do't have freinds, you can choose your color", w*16,h*15,w*3.5);
+text("-->",w*17,h*17.5);
+//text("- Press ' S ', If you want   to SAVE your Masterpice!  ", w*16,h*14.5,w*3.5);
+//text("- Press ' E ', If you want   to ERASE your Masterpice!  ", w*16,h*16.5,w*3.5);
 
 textSize(25);
 //RETTANGOLI
@@ -153,6 +165,9 @@ function keyReleased() {
   if (key == 's' || key == 'S') {
     save('cover.png');
     }
+    if (key == 'e' || key == 'E') {
+      erase=1;
+      }
   }
 
 function windowResized() {
