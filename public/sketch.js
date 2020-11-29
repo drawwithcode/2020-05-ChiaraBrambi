@@ -1,7 +1,7 @@
 //https://assignement05chiara.herokuapp.com/
 ////variabili ////////////
 let socket = io();
-let myColor = 'white';
+let myColor;
 let pFriend;
 let sfondoS;
 let mioSpessoreMatita= 20;
