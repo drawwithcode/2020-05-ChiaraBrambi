@@ -1,4 +1,5 @@
 //https://assignement05chiara.herokuapp.com/
+
 ////variabili ////////////
 let socket = io();
 let myColor;
@@ -10,7 +11,8 @@ let colorP;
 let pMe;
 var cnv;
 let slider,slider2;
-let firstColor,mioOpacity;
+let firstColor;
+let myOpacity;
 ////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
 
 //quando arriva il messaggio attiva la funzione
@@ -23,17 +25,19 @@ socket.on('newPlayer', newPlayer);
 function setColor(assignedColor){
   myColor = assignedColor;
   firstColor = myColor;
+
   }
 
   function newConnection() {
     console.log("your id:", socket.id);
   }
-
+let c;
 //quali info vuoi mandare tra i client?
   function otherMouse(data){
     push();
-    noStroke();
-    fill(data.color);
+    c = color(data.color, data.opacity);
+    //c.setAlpha(data.opacity);
+    fill(c);
     ellipse(data.x, data.y,data.size);
     pop();
   }
@@ -49,7 +53,6 @@ let newFriend;
 ////inizio sketch/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function preload(){
     sfondoS = loadImage('disegnini.png');
-    //back = loadImage('background.png');
   }
 
   function centerCanvas() {
@@ -80,13 +83,13 @@ function setup() {
     pMe.style('color', myColor);
 
     //SLIDER
-    slider = createSlider(0.1,50,10);
+    slider = createSlider(2,50,20);
     slider.position(w*16,h*7.8);
     slider.style('width', '200px');
     slider.style('height', '3px');
 
     //SLIDER2
-    slider2 = createSlider(0.1,50,10);
+    slider2 = createSlider(0.2,255,255);
     slider2.position(w*16,h*10);//w*15.3,h*6,w*3.5
     slider2.style('width', '200px');
     slider2.style('height', '3px');
@@ -96,20 +99,25 @@ function setup() {
     colorP.position(w*17.5,h*17);
     colorP.style("width", "100px");
     colorP.value(myColor);
-    //firstColor = myColor;
+
+  //  colorP.setAlpha(128);
 }
 
 //funzione che regola me
 function mouseDragged(){
   if (mouseX > width/20*4 && mouseX < width/20*14.5 && mouseY > height/20*3 && mouseY < height/20*19) {
-        noStroke();
+    push();
+    myColor = color(myColor);
+    myColor.setAlpha(myOpacity);
         fill(myColor);
-              ellipse(mouseX,mouseY,mioSpessoreMatita);
+        ellipse(mouseX, mouseY,mioSpessoreMatita );
+      pop();
         let message ={
           x: mouseX,
           y: mouseY,
           color: myColor,
           size: mioSpessoreMatita,
+          opacity: myOpacity,
         }
       //sand to the server
       socket.emit("mouse", message);
@@ -120,7 +128,7 @@ let erase = 0;
 ///////////inizio draw ////////////////////////////////////////////////
 function draw() {
 mioSpessoreMatita = slider.value();
-mioOpacity = slider2.value();
+myOpacity = slider2.value();
 
 if (erase== 1){
   colorP.value('#f8f8ff');
@@ -130,7 +138,6 @@ if (erase== 1){
 }
 
 ///////immagine sfondo//////////
-//image(back,w*10,h*10);
 image(sfondoS,w*5,h*4,sfondoS.width/3,sfondoS.height/3);
 
 push();
