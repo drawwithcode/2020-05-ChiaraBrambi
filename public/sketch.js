@@ -35,9 +35,9 @@ let c;
 //quali info vuoi mandare tra i client?
   function otherMouse(data){
     push();
-    c = color(data.color, data.opacity);
-    //c.setAlpha(data.opacity);
-    fill(c);
+    // c = color(data.color, data.opacity);
+    // //c.setAlpha(data.opacity);
+    fill(data.color);
     ellipse(data.x, data.y,data.size);
     pop();
   }
@@ -117,7 +117,7 @@ function mouseDragged(){
           y: mouseY,
           color: myColor,
           size: mioSpessoreMatita,
-          opacity: myOpacity,
+          //opacity: myOpacity,
         }
       //sand to the server
       socket.emit("mouse", message);
