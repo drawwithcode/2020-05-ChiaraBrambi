@@ -144,12 +144,12 @@ textAlign(LEFT);
 
 rectMode(CORNER);
 fill(firstColor);
-text("- Press ' S ' to SAVE your Masterpice!  ", w*15.8,h*4,w*3.5);
+text("- Press ' S ' to SAVE your Masterpiece!  ", w*15.8,h*4,w*3.8);
 text("- Press ' E ' to ERASE your Emotions.  ", w*15.8,h*5.5,w*3.5);
-text("- Pencil's SIZE regulator. ", w*15.8,h*7,w*3.5);
-text("- Pencil's TRASPARANCY regulator. ", w*15.8,h*9.2,w*3.5);
-text('- The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*15.8,h*12,w*3.5);
-text("- If you do't have freinds, you can choose your color", w*15.8,h*15.5,w*3.5);
+text("- Pencil  SIZE regulator. ", w*15.8,h*7,w*3.5);
+text("- Pencil  OPACITY regulator. ", w*15.8,h*9.2,w*3.8);
+text("- More friends you invite, more colors you'll have !", w*15.8,h*12,w*3.8);
+text("- If you don't have friends, you can choose your color", w*15.8,h*15.5,w*3.5);
 text(" Change color -->",w*15.8,h*17.5);
 
 textAlign('center');
