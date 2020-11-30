@@ -140,18 +140,19 @@ rect( width-350,0,350,h*19, 0,0,20,20);
 noStroke();
 textSize(17);
 textFont('Schoolbell');
-textAlign('center');
+textAlign(LEFT);
+
 rectMode(CORNER);
 fill(firstColor);
 text("- Press ' S ' to SAVE your Masterpice!  ", w*15.8,h*4,w*3.5);
 text("- Press ' E ' to ERASE your Emotions.  ", w*15.8,h*5.5,w*3.5);
-text("- Pencil's SIZE regulator. ", w*15.3,h*7,w*3.5);
-text("- Pencil's TRASPARANCY regulator. ", w*15.6,h*9.2,w*3.5);
-textAlign('center');
-text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*15.8,h*11,w*3.5);
-text("-If you do't have freinds, you can choose your color", w*15.8,h*15,w*3.5);
-text("-->",w*17,h*17.5);
+text("- Pencil's SIZE regulator. ", w*15.8,h*7,w*3.5);
+text("- Pencil's TRASPARANCY regulator. ", w*15.8,h*9.2,w*3.5);
+text('- The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*15.8,h*13,w*3.5);
+text("- If you do't have freinds, you can choose your color", w*15.8,h*15.5,w*3.5);
+text(" Change color -->",w*15.8,h*17.5);
 
+textAlign('center');
 textSize(25);
 //RETTANGOLI
 rect( 0,0,w*6.3,80,0,0,20,20);
