@@ -9,8 +9,8 @@ let mioSpessoreMatita= 20;
 let colorP;
 let pMe;
 var cnv;
-let slider;
-let firstColor;
+let slider,slider2;
+let firstColor,mioOpacity;
 ////attivazione socket///////////////////////////////////////////////////////////////////////////////////////////////
 
 //quando arriva il messaggio attiva la funzione
@@ -22,6 +22,7 @@ socket.on('newPlayer', newPlayer);
 ////Funzioni socket/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function setColor(assignedColor){
   myColor = assignedColor;
+  firstColor = myColor;
   }
 
   function newConnection() {
@@ -80,15 +81,22 @@ function setup() {
 
     //SLIDER
     slider = createSlider(0.1,50,10);
-    slider.position(w*16.5,h*9.2);
+    slider.position(w*16,h*7.8);
     slider.style('width', '200px');
+    slider.style('height', '3px');
+
+    //SLIDER2
+    slider2 = createSlider(0.1,50,10);
+    slider2.position(w*16,h*10);//w*15.3,h*6,w*3.5
+    slider2.style('width', '200px');
+    slider2.style('height', '3px');
 
     //color myColorPicker
     colorP = createColorPicker();
     colorP.position(w*17.5,h*17);
     colorP.style("width", "100px");
     colorP.value(myColor);
-    firstColor=myColor;
+    //firstColor = myColor;
 }
 
 //funzione che regola me
@@ -112,6 +120,8 @@ let erase = 0;
 ///////////inizio draw ////////////////////////////////////////////////
 function draw() {
 mioSpessoreMatita = slider.value();
+mioOpacity = slider2.value();
+
 if (erase== 1){
   colorP.value('#f8f8ff');
   erase = 0;
@@ -128,19 +138,19 @@ noStroke();
 fill( '#f8f8ff');
 rect( width-350,0,350,h*19, 0,0,20,20);
 noStroke();
-textSize(23);
+textSize(17);
 textFont('Schoolbell');
 textAlign('center');
 rectMode(CORNER);
 fill(firstColor);
-text("- Press ' S ', to SAVE      your Masterpice!  ", w*16,h*4,w*3.5);
-text("- Press ' E ', to ERASE     your Emotions.  ", w*16,h*6,w*3.5);
-text("- Pencil's SIZE", w*17,h*8.5);
-text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*16,h*11,w*3.5);
-text("-If you do't have freinds, you can choose your color", w*16,h*15,w*3.5);
+text("- Press ' S ' to SAVE your Masterpice!  ", w*15.8,h*4,w*3.5);
+text("- Press ' E ' to ERASE your Emotions.  ", w*15.8,h*5.5,w*3.5);
+text("- Pencil's SIZE regulator. ", w*15.3,h*7,w*3.5);
+text("- Pencil's TRASPARANCY regulator. ", w*15.6,h*9.2,w*3.5);
+textAlign('center');
+text('-The more friends you invite, the more colors you will have to complete the sketch  (•◡•) ', w*15.8,h*11,w*3.5);
+text("-If you do't have freinds, you can choose your color", w*15.8,h*15,w*3.5);
 text("-->",w*17,h*17.5);
-//text("- Press ' S ', If you want   to SAVE your Masterpice!  ", w*16,h*14.5,w*3.5);
-//text("- Press ' E ', If you want   to ERASE your Masterpice!  ", w*16,h*16.5,w*3.5);
 
 textSize(25);
 //RETTANGOLI
