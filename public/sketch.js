@@ -125,6 +125,7 @@ function mouseDragged(){
 }
 
 let erase = 0;
+let first = 0;
 
 ///////////inizio draw ////////////////////////////////////////////////
 function draw() {
@@ -139,6 +140,10 @@ if (erase== 1){
   myColor = colorP.value();
 }
 
+if (first == 1){
+  colorP.value(firstColor);
+  first = 0;
+}
 ///////immagine sfondo//////////
 image(sfondoS,w*5,h*4,sfondoS.width/3,sfondoS.height/3);
 
@@ -151,11 +156,12 @@ textFont('Schoolbell');
 textAlign(LEFT);
 rectMode(CORNER);
 fill(firstColor);
-text("- Press ' S ' to SAVE your Masterpiece!  ", w*15.8,h*4,w*3.8);
-text("- Press ' E ' to ERASE your Emotions.  ", w*15.8,h*5.5,w*3.5);
+text("- Press ' E ' to ERASE your Emotions.", w*15.8,h*4,w*3.8);
+text("- Press ' F ' to RESET the first Colors.", w*15.8,h*5.5,w*3.5);
 text("- Pencil  SIZE regulator. ", w*15.8,h*7,w*3.5);
 text("- Pencil  OPACITY regulator. ", w*15.8,h*9.2,w*3.8);
-text("- More friends you invite, more colors you'll have !", w*15.8,h*12,w*3.8);
+text("- Press ' S ' to SAVE your Masterpiece! ", w*15.8,h*11.5,w*3.8);
+text("- More friends you invite, more colors you'll have !", w*15.8,h*13,w*3.8);
 text("- If you don't have friends, you can choose your color", w*15.8,h*15.5,w*3.5);
 text(" Change color -->",w*15.8,h*17.5);
 
@@ -182,6 +188,8 @@ pop();
 
 }
 
+//////////fine draw ///////////////////////////////////////////////
+
 function keyReleased() {
   if (key == 's' || key == 'S') {
     save('cover.png');
@@ -189,6 +197,9 @@ function keyReleased() {
     if (key == 'e' || key == 'E') {
       erase=1;
       }
+      if (key == 'f' || key == 'F') {
+        first = 1;
+        }
   }
 
 function windowResized() {
