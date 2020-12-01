@@ -1,5 +1,4 @@
 //https://assignement05chiara.herokuapp.com/
-
 ////variabili ////////////
 let socket = io();
 let myColor;
@@ -37,7 +36,9 @@ let c;
     push();
     // c = color(data.color, data.opacity);
     // //c.setAlpha(data.opacity);
-    fill(data.color);
+    var col = color(data.color);
+    col.setAlpha(data.op);
+    fill(col);
     ellipse(data.x, data.y,data.size);
     pop();
   }
@@ -107,9 +108,10 @@ function setup() {
 function mouseDragged(){
   if (mouseX > width/20*4 && mouseX < width/20*14.5 && mouseY > height/20*3 && mouseY < height/20*19) {
     push();
-    myColor = color(myColor);
-    myColor.setAlpha(myOpacity);
-        fill(myColor);
+        var col = color(myColor);
+        col.setAlpha(myOpacity);
+        //fill(myColor);
+        fill(col);
         ellipse(mouseX, mouseY,mioSpessoreMatita );
       pop();
         let message ={
@@ -117,7 +119,7 @@ function mouseDragged(){
           y: mouseY,
           color: myColor,
           size: mioSpessoreMatita,
-          //opacity: myOpacity,
+          op: myOpacity,
         }
       //sand to the server
       socket.emit("mouse", message);
