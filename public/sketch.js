@@ -79,7 +79,7 @@ function setup() {
     pFriend.style('font-size', '25px');
     pFriend.style('color', myColor);
 
-    pMe= createP('👋 Welcome>> you are: ');
+    pMe= createP('👋 Welcome>> you are: ' );
     pMe.style('font-size', '25px');
     pMe.style('color', myColor);
 
@@ -160,7 +160,8 @@ text("- If you don't have friends, you can choose your color", w*15.8,h*15.5,w*3
 text(" Change color -->",w*15.8,h*17.5);
 
 textSize(25);
-text( myColor , w*3.5,h*3.1);
+//text( myColor , w*3.5,h*3.1);
+
 textAlign('center');
 
 //RETTANGOLI
