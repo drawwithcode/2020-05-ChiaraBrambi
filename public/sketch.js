@@ -37,7 +37,7 @@ let c;
     // c = color(data.color, data.opacity);
     // //c.setAlpha(data.opacity);
     var col = color(data.color);
-    col.setAlpha(data.op);
+    col.setAlpha(data.opacity);
     fill(col);
     ellipse(data.x, data.y,data.size);
     pop();
@@ -64,13 +64,13 @@ function preload(){
 
 let w, h;
 function setup() {
+
     cnv = createCanvas(windowWidth, windowHeight);
     centerCanvas();
     w = width/20;
     h = height/20;
     ellipseMode(CORNER);
 
-    frameRate(12);
     fill('#f8f8ff');
     noStroke();
     rect( w*4.5,h*3.5,w*10,h*19,20);
@@ -79,7 +79,7 @@ function setup() {
     pFriend.style('font-size', '25px');
     pFriend.style('color', myColor);
 
-    pMe= createP('👋 Welcome>> you are: ' + myColor);
+    pMe= createP('👋 Welcome>> you are: ');
     pMe.style('font-size', '25px');
     pMe.style('color', myColor);
 
@@ -100,8 +100,6 @@ function setup() {
     colorP.position(w*17.5,h*17);
     colorP.style("width", "100px");
     colorP.value(myColor);
-
-  //  colorP.setAlpha(128);
 }
 
 //funzione che regola me
@@ -119,7 +117,7 @@ function mouseDragged(){
           y: mouseY,
           color: myColor,
           size: mioSpessoreMatita,
-          op: myOpacity,
+          opacity: myOpacity,
         }
       //sand to the server
       socket.emit("mouse", message);
@@ -127,8 +125,10 @@ function mouseDragged(){
 }
 
 let erase = 0;
+
 ///////////inizio draw ////////////////////////////////////////////////
 function draw() {
+
 mioSpessoreMatita = slider.value();
 myOpacity = slider2.value();
 
@@ -146,11 +146,9 @@ push();
 noStroke();
 fill( '#f8f8ff');
 rect( width-350,0,350,h*19, 0,0,20,20);
-noStroke();
 textSize(17);
 textFont('Schoolbell');
 textAlign(LEFT);
-
 rectMode(CORNER);
 fill(firstColor);
 text("- Press ' S ' to SAVE your Masterpiece!  ", w*15.8,h*4,w*3.8);
@@ -161,8 +159,10 @@ text("- More friends you invite, more colors you'll have !", w*15.8,h*12,w*3.8);
 text("- If you don't have friends, you can choose your color", w*15.8,h*15.5,w*3.5);
 text(" Change color -->",w*15.8,h*17.5);
 
-textAlign('center');
 textSize(25);
+text( myColor , w*3.5,h*3.1);
+textAlign('center');
+
 //RETTANGOLI
 rect( 0,0,w*6.3,80,0,0,20,20);
     rect( width-350,0,350,80, 0,0,20,20);
