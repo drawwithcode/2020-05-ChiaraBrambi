@@ -79,7 +79,7 @@ function setup() {
     pFriend.style('font-size', '25px');
     pFriend.style('color', myColor);
 
-    pMe= createP('👋 Welcome>> you are: ' );
+    pMe= createP('👋 Welcome>> you are: '+ myColor);
     pMe.style('font-size', '25px');
     pMe.style('color', myColor);
 
